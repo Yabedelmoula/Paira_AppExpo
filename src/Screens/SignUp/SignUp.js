@@ -1,0 +1,296 @@
+import React from "react";
+import { StatusBar } from "expo-status-bar";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+  TextInput,
+  TouchableOpacity,
+  SafeAreaView,
+} from "react-native";
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
+
+class SignUp extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      selectedBtn: "User",
+    };
+  }
+
+  render() {
+    console.log(this.props);
+    return (
+      <SafeAreaView style={styles.container}>
+        <StatusBar backgroundColor="#fff" style="dark" />
+        <View style={styles.headerView}>
+          <View
+            style={{ flex: 1, justifyContent: "center", alignSelf: "center" }}
+          >
+            <Image
+              source={require("./../../../assets/logo.png")}
+              style={{
+                width: 100,
+                height: 94,
+                resizeMode: "cover",
+                alignSelf: "center",
+                marginRight: 20,
+                borderRadius: 100,
+              }}
+            />
+          </View>
+        </View>
+        <View
+          style={{
+            marginVertical: 5,
+          }}
+        >
+          <View style={{ flexDirection: "row", justifyContent: "center" }}>
+            <Text style={styles.titleTxt}>Signup</Text>
+          </View>
+          <View style={styles.BtnView}>
+            {this.state.selectedBtn === "User" ? (
+              <TouchableOpacity
+                style={styles.Btn}
+                onPress={() => this.props.navigation.navigate("SignUp")}
+              >
+                <Text style={styles.BtntitleActive}>User</Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity>
+                <Text style={styles.BtnTitle}>User</Text>
+              </TouchableOpacity>
+            )}
+
+            {this.state.selectedBtn === "Business" ? (
+              <TouchableOpacity
+                style={styles.Btn}
+                onPress={() => this.props.navigation.navigate("BusinessSignUp")}
+              >
+                <Text style={styles.BtntitleActive}>Business</Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate("BusinessSignUp")}
+              >
+                <Text style={styles.BtnTitle}>Business</Text>
+              </TouchableOpacity>
+            )}
+          </View>
+        </View>
+
+        <View style={styles.textinputView}>
+          <TextInput
+            style={styles.input}
+            placeholder="Username"
+            keyboardType="default"
+          />
+        </View>
+
+        <View style={styles.textinputView}>
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            keyboardType="email-address"
+          />
+        </View>
+
+        <View style={styles.textinputView}>
+          <TextInput
+            style={styles.input}
+            placeholder="Contact No."
+            keyboardType="number-pad"
+          />
+        </View>
+
+        <View style={styles.textinputView}>
+          <TextInput
+            style={styles.input}
+            placeholder="Password"
+            keyboardType="default"
+            secureTextEntry={true}
+          />
+          <TouchableOpacity
+            style={{ flex: 1, alignItems: "flex-end", marginHorizontal: 20 }}
+          >
+            <Image
+              style={styles.passwordIcon}
+              source={require("./../../../assets/eyeicon.png")}
+            />
+          </TouchableOpacity>
+        </View>
+        <TouchableOpacity
+          style={styles.loginBtnView}
+          onPress={() => this.props.navigation.navigate("SetLocation")}
+        >
+          <Text style={styles.loginBtnText}>Signup</Text>
+        </TouchableOpacity>
+
+        <View style={styles.line}>
+          <Text style={styles.lineTxt}>
+            ___________________ Or ____________________
+          </Text>
+        </View>
+
+        <View style={styles.socialicons}>
+          <TouchableOpacity>
+            <Image source={require("./../../../assets/fbicon.png")} />
+          </TouchableOpacity>
+
+          <TouchableOpacity>
+            <Image source={require("./../../../assets/gmailicon.png")} />
+          </TouchableOpacity>
+
+          <TouchableOpacity>
+            <Image source={require("./../../../assets/twittericon.png")} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.signupTxt}>
+          <Text>Already have an account? </Text>
+          <TouchableOpacity
+            onPress={() => this.props.navigation.navigate("SignIn")}
+          >
+            <Text style={{ color: "#E86A20" }}> Login</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    );
+  }
+}
+
+export default SignUp;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "center",
+  },
+  headerView: {
+    flexDirection: "row",
+    padding: 10,
+  },
+  headerText: {
+    color: "white",
+  },
+  headerBackView: {
+    flexDirection: "row",
+  },
+
+  headerTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "black",
+  },
+
+  titleTxt: {
+    fontSize: 36,
+    lineHeight: 36,
+    fontWeight: "700",
+    fontFamily: "Nexa-Bold",
+  },
+  BtnView: {
+    width: "80%",
+    height: 50,
+    flexDirection: "row",
+    marginVertical: 20,
+    backgroundColor: "#EFF0F0",
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  Btn: {
+    width: 130,
+    backgroundColor: "#FF9900",
+    height: 50,
+    padding: 10,
+    borderRadius: 10,
+  },
+  BtnTitle: {
+    fontSize: 18,
+    lineHeight: 27,
+    marginHorizontal: 20,
+  },
+  BtntitleActive: {
+    alignSelf: "center",
+    fontSize: 18,
+    lineHeight: 27,
+    color: "white",
+  },
+  input: {
+    width: "80%",
+    fontSize: 16,
+    lineHeight: 16,
+    fontWeight: "400",
+    fontFamily: "Nexa-Regular",
+    paddingHorizontal: 30,
+  },
+  textinputView: {
+    width: 340,
+    height: 54,
+    flexDirection: "row",
+    alignItems: "center",
+    alignSelf: "center",
+    borderRadius: 30,
+    marginVertical: 8,
+    borderWidth: 1,
+    borderColor: "gray",
+    backgroundColor: "#EFF0F0",
+  },
+
+  labelImg: {
+    width: 12,
+    height: 10,
+    marginHorizontal: 15,
+  },
+  passlabelImg: {
+    width: 10,
+    height: 13,
+    marginHorizontal: 15,
+  },
+  passwordIcon: {
+    width: 20,
+    height: 13,
+  },
+
+  loginBtnView: {
+    width: 330,
+    height: 54,
+    borderRadius: 30,
+    backgroundColor: "#FF9900",
+    alignSelf: "center",
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: 10,
+  },
+  loginBtnText: {
+    fontSize: 20,
+    lineHeight: 30,
+    fontWeight: "500",
+    color: "#fff",
+  },
+  signupTxt: {
+    flexDirection: "row",
+    alignSelf: "center",
+    fontSize: 15,
+    lineHeight: 22,
+    fontWeight: "400",
+    marginBottom: 25,
+  },
+  line: {
+    marginVertical: 10,
+    marginLeft: 30,
+  },
+  lineTxt: {
+    color: "gray",
+  },
+
+  socialicons: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginVertical: 5,
+  },
+});
